@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: safe-ai-mailroom
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: DATABASE_PATH
+        value: /var/data/mailroom.sqlite3
+    disk:
+      name: mailroom-data
+      mountPath: /var/data
+      sizeGB: 1
